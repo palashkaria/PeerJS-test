@@ -11,7 +11,7 @@
 <h1>hi</h1>
 <input type="text" id="calling"></input>
 <button class="button-call" onclick="calls()">Call</button>
-<audio controls></audio>
+<video controls></video>
 <div class="answers-code">
 	<button class="button-answ" onclick="answers()">Generate ID</button>
 	<div id="peerid"></div>
@@ -27,12 +27,12 @@ var getUserMedia = (function() {
 
 
 function onReceiveStream(stream) {
-	var audio = document.querySelector('audio');
-	console.log(audio);
-	audio.srcObject = stream;
-	audio.onloadedmetadata = function (e) {
-		console.log('now playing the audio');
-		audio.play();
+	var video = document.querySelector('video');
+	console.log(video);
+	video.srcObject = stream;
+	video.onloadedmetadata = function (e) {
+		console.log('now playing the video');
+		video.play();
 	}
 }
 
@@ -61,7 +61,7 @@ function answers() {
         console.log('give you id');
     });
     peer.on('call', function (call) {
-        navigator.mediaDevices.getUserMedia({video: false, audio: true}, function(stream) {
+        navigator.mediaDevices.getUserMedia({video: true, audio: true}, function(stream) {
             console.log('you got a phone call');
             call.answer(stream); // Answer the call with an A/V stream.
             call.on('stream', function (remoteStream) {
