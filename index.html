@@ -41,7 +41,7 @@ function calls() {
     var person_to_call = document.getElementById('calling').value;
     console.log('making a call == ' + person_to_call);
     var peer = new Peer();
-    navigator.mediaDevices.getUserMedia({video: false, audio: true}, function(stream) {
+    navigator.mediaDevices.getUserMedia({video: true, audio: true}, function(stream) {
         const call = peer.call(person_to_call, stream);
         console.log('waiting...')
         call.on('stream', function(remoteStream) {
